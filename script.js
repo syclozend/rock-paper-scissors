@@ -1,0 +1,70 @@
+function getComputerChoice() {
+  let choiceNumber = Math.floor(Math.random() * 3);
+  return choiceNumber === 0
+    ? "Rock"
+    : choiceNumber === 1
+    ? "Paper"
+    : "Scissors";
+}
+
+function getHumanChoice() {
+  return prompt("Choose between Rock, Paper, and Scissors!");
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+  humanChoice =
+    humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
+
+  console.log("You chose: " + humanChoice);
+  console.log("Computer chose: " + computerChoice);
+  let win = "You win! " + humanChoice + " beats " + computerChoice + ".";
+  let lose = "You lost! " + computerChoice + " beats " + humanChoice + ".";
+
+  //Rock beats Paper
+  //Scissor beats Rock
+  //Rock beats Scissors
+  //If humanChoice is ___ and cumputerChoice is ____ , console.log message
+
+  humanChoice == computerChoice
+    ? (console.log("Draw!"), alert("draw"))
+    : (humanChoice === "Rock" && computerChoice === "Paper") ||
+      (humanChoice === "Paper" && computerChoice === "Scissors") ||
+      (humanChoice === "Scissors" && computerChoice === "Rock")
+    ? (console.log(lose),
+      alert(lose),
+      ++computerScore,
+      console.log(
+        "Your score: " + humanScore + " Computer score: " + computerScore
+      ),
+      alert("Your score: " + humanScore + " Computer score: " + computerScore))
+    : (humanChoice === "Rock" && computerChoice === "Scissors") ||
+      (humanChoice === "Scissors" && computerChoice === "Paper") ||
+      (humanChoice === "Paper" && computerChoice === "Rock")
+    ? (console.log(win),
+      alert(win),
+      ++humanScore,
+      console.log(
+        "Your score: " + humanScore + " Computer score: " + computerScore
+      ),
+      alert("Your score: " + humanScore + " Computer score: " + computerScore))
+    : (console.log(humanChoice + " is not a valid option."),
+      alert(humanChoice + " is not a valid option."));
+}
+
+function playGame() {
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  playRound(getHumanChoice(), getComputerChoice());
+  humanScore > computerScore
+    ? (console.log("Congratulations! You won the game."),
+      alert("Congratulations! You won the game."))
+    : humanScore < computerScore
+    ? (console.log("You lost the game!"), alert("You lost the game!"))
+    : (console.log("It's a draw!"), alert("It's a draw!"));
+}
+playGame();
